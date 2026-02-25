@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+
+# Poetry
+poetry.lock  # commit this if you want fully reproducible installs
+
+# Data — PDFs not committed
+data/papers/*.pdf
+
+# Outputs
+# output/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
