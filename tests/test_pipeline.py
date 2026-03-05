@@ -105,3 +105,15 @@ def test_extracted_links_are_valid_urls():
                 assert link.startswith("http"), (
                     f"Invalid URL in {link_file.name}: {link}"
                 )
+
+def test_paper_list_has_ten_entries():
+    """Test that the paper list contains exactly 10 entries."""
+    from scripts.papers import PAPERS
+    assert len(PAPERS) == 10
+
+def test_paper_list_has_required_keys():
+    """Test that each paper entry has id and title."""
+    from scripts.papers import PAPERS
+    for paper in PAPERS:
+        assert "id" in paper
+        assert "title" in paper
