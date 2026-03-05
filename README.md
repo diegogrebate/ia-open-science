@@ -32,49 +32,75 @@ This project implements a reproducible pipeline that:
 | 2302.13971 | LLaMA                           |
 | 1207.0580  | Dropout                         |
 
-All papers are open-access. PDFs are not committed to this repository. Use `papers.py` to fetch them.
+All papers are open-access. PDFs are not committed to this repository. Use `scripts/papers.py` to fetch them.
 
 ## Requirements
 
-- Python 3.10+
-- [Poetry](https://python-poetry.org/)
-- [Docker](https://docs.docker.com/get-docker/) (for Grobid)
+- [Docker](https://docs.docker.com/get-docker/) — required for both installation methods
+- [Poetry](https://python-poetry.org/) — for the local environment method only
 
 ## Installation
 
+There are two ways to run this project.
+
+### Option A — Docker Compose (recommended)
+
+Runs the full pipeline in an isolated environment. No Python setup needed.
+
 ```bash
-# Clone the repository
+git clone https://github.com/diegogrebate/ia-open-science.git
+cd ia-open-science
+docker compose up
+```
+
+Results will appear in `output/` on your machine once the pipeline finishes.
+
+### Option B — Poetry (local environment)
+
+```bash
 git clone https://github.com/diegogrebate/ia-open-science.git
 cd ia-open-science
 
-# Install dependencies with Poetry
+# Install dependencies
 poetry install
 
 # Activate the environment
 poetry env activate
+source <path printed by the above command>
+
+# Create required folders
+mkdir -p data/papers output/xml output/links
+```
+
+Then start Grobid in a separate terminal and keep it running:
+
+```bash
+docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.8.2
 ```
 
 ## Usage
 
-Run the scripts in this order:
+### With Docker Compose
 
 ```bash
-# 1. Start Grobid server (keep this running in a separate terminal)
-docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.8.2
+docker compose up
+```
 
-# 2. Download the papers
+To run a single script instead of the full pipeline:
+
+```bash
+docker compose run pipeline python scripts/keyword_cloud.py
+```
+
+### With Poetry
+
+Run scripts in this order:
+
+```bash
 poetry run python scripts/papers.py
-
-# 3. Process PDFs through Grobid → TEI XML
 poetry run python scripts/process_grobid.py
-
-# 4. Generate keyword cloud from abstracts
 poetry run python scripts/keyword_cloud.py
-
-# 5. Generate figures-per-paper bar chart
 poetry run python scripts/figures_chart.py
-
-# 6. Extract links from all papers
 poetry run python scripts/extract_links.py
 ```
 
@@ -108,16 +134,17 @@ poetry run pytest tests/ -v
 - Grobid's figure detection counts `<figure>` tags in TEI XML, which may include tables (tagged as figures in some versions of Grobid)
 - Abstract extraction assumes standard TEI structure — some papers with non-standard formatting may yield incomplete abstracts
 - URL extraction via regex may capture malformed URLs from broken line wraps in the PDF
-- The pipeline requires Grobid running locally; a network failure or server overload will cause processing to skip files
+- The pipeline requires a running Grobid instance; if unavailable it retries 3 times then skips the file
+- Docker Compose requires the Grobid health check to pass before the pipeline starts — on slow machines this may take over 30 seconds
 
 ## Project Structure
 
 ```
-paper-analysis/
-├── data/papers/         # Downloaded PDFs (not committed)
+ia-open-science/
+├── data/papers/              # Downloaded PDFs (not committed)
 ├── output/
-│   ├── xml/             # Grobid TEI XML output
-│   ├── links/           # Extracted links per paper
+│   ├── xml/                  # Grobid TEI XML output
+│   ├── links/                # Extracted links per paper
 │   ├── keyword_cloud.png
 │   └── figures_per_paper.png
 ├── scripts/
@@ -129,8 +156,11 @@ paper-analysis/
 ├── tests/
 │   └── test_pipeline.py
 ├── .github/workflows/ci.yml
+├── Dockerfile
+├── docker-compose.yml
 ├── pyproject.toml
 ├── CITATION.cff
+├── codemeta.json
 └── README.md
 ```
 
@@ -141,4 +171,4 @@ If you use this project, please cite it as described in `CITATION.cff`.
 ## Acknowledgements
 
 - [Grobid](https://github.com/kermitt2/grobid) by Laurent Romary and Patrice Lopez
-- Course: Open Science and AI in Research Software Engineering, UPM.
+- Course: Open Science and AI in Research Software Engineering, UPM

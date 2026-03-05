@@ -1,0 +1,23 @@
+services:
+  grobid:
+    image: lfoppiano/grobid:0.8.2
+    ports:
+      - "8070:8070"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8070/api/isalive"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  pipeline:
+    build: .
+    depends_on:
+      grobid:
+        condition: service_healthy
+    environment:
+      - GROBID_URL=http://grobid:8070
+    volumes:
+      # Mount output folder so results are accessible on your machine
+      - ./output:/app/output
+      - ./data:/app/data

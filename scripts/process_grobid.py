@@ -1,8 +1,8 @@
 import logging
 import time
 from pathlib import Path
-
 import requests
+import os 
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -12,6 +12,8 @@ PDF_DIR = Path("data/papers")
 XML_DIR = Path("output/xml")
 TIMEOUT = 60  # seconds per request
 RETRY_WAIT = 5  # seconds to wait if Grobid is busy (503)
+GROBID_URL = os.environ.get("GROBID_URL", "http://localhost:8070") + "/api/processFulltextDocument"
+
 
 
 def is_grobid_alive() -> bool:
