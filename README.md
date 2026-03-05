@@ -32,7 +32,7 @@ This project implements a reproducible pipeline that:
 | 2302.13971 | LLaMA                           |
 | 1207.0580  | Dropout                         |
 
-All papers are open-access. PDFs are not committed to this repository — use `download_papers.py` to fetch them.
+All papers are open-access. PDFs are not committed to this repository. Use `papers.py` to fetch them.
 
 ## Requirements
 
@@ -52,7 +52,6 @@ poetry install
 
 # Activate the environment
 poetry env activate
-source <env-path>   # output of the above command
 ```
 
 ## Usage
@@ -63,8 +62,8 @@ Run the scripts in this order:
 # 1. Start Grobid server (keep this running in a separate terminal)
 docker run -t --rm -p 8070:8070 lfoppiano/grobid:0.8.2
 
-# 2. Download the 10 papers
-poetry run python scripts/download_papers.py
+# 2. Download the papers
+poetry run python scripts/papers.py
 
 # 3. Process PDFs through Grobid → TEI XML
 poetry run python scripts/process_grobid.py
@@ -122,7 +121,7 @@ paper-analysis/
 │   ├── keyword_cloud.png
 │   └── figures_per_paper.png
 ├── scripts/
-│   ├── download_papers.py
+│   ├── papers.py
 │   ├── process_grobid.py
 │   ├── keyword_cloud.py
 │   ├── figures_chart.py
