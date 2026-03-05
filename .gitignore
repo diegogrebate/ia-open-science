@@ -5,14 +5,11 @@ __pycache__/
 dist/
 .venv/
 
-# Poetry
-poetry.lock  # commit this if you want fully reproducible installs
-
 # Data — PDFs not committed
 data/papers/*.pdf
 
 # Outputs
-# output/
+output/
 
 # IDE
 .vscode/
