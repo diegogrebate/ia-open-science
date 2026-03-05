@@ -2,7 +2,7 @@
 name = "ia-open-science"
 version = "0.1.0"
 description = "Text extraction and analysis of AI/ML research papers using Grobid"
-authors = ["Diego Garcia <diego.grebate@gmail.com>"]
+authors = ["Diego Garcia Rebate <diego.grebate@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 package-mode = false 

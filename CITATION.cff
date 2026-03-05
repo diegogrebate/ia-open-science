@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "Paper Analysis Pipeline"
+abstract: "Text extraction and analysis of 10 open-access AI/ML research papers using Grobid."
+authors:
+  - family-names: "Garcia Rebate"
+    given-names: "Diego"
+    affiliation: "Universidad Politécnica de Madrid"
+repository-code: "https://github.com/diegogrebate/ia-open-science"
+license: MIT
+version: 0.1.0
+date-released: "2026-02-23"
+keywords:
+  - "open science"
+  - "text mining"
+  - "grobid"
+  - "research software engineering"
+  - "PDF extraction"
+  - "keyword cloud"
