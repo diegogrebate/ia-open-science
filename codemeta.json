@@ -3,8 +3,9 @@
   "@type": "SoftwareSourceCode",
   "name": "Paper Analysis Pipeline",
   "description": "Text extraction and analysis of 10 open-access AI/ML research papers using Grobid. Generates keyword clouds, figure counts, and link lists.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "dateCreated": "2026-02-23",
+  "dateModified": "2026-03-07",
   "license": "https://spdx.org/licenses/MIT",
   "programmingLanguage": {
     "@type": "ComputerLanguage",

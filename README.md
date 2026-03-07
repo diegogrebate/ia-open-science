@@ -1,7 +1,7 @@
 # Paper Analysis Pipeline
 
 [![CI](https://github.com/diegogrebate/ia-open-science/actions/workflows/ci.yml/badge.svg)](https://github.com/diegogrebate/ia-open-science/actions)
-[![DOI](https://zenodo.org/badge/1166802123.svg)](https://doi.org/10.5281/zenodo.18879554)
+[![DOI](https://zenodo.org/badge/1166802123.svg)](https://doi.org/10.5281/zenodo.18900530)
 [![Documentation](https://readthedocs.org/projects/ia-open-science/badge/?version=latest)](https://ia-open-science.readthedocs.io)
 
 Text extraction and analysis of 10 open-access AI/ML research papers using [Grobid](https://github.com/kermitt2/grobid).
