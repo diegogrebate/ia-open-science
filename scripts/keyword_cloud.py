@@ -14,7 +14,7 @@ OUTPUT_PATH = Path("output/keyword_cloud.png")
 # TEI XML namespace used by Grobid
 TEI_NS = {"tei": "http://www.tei-c.org/ns/1.0"}
 
-# Common words to exclude that don't carry scientific meaning
+# Common words to exclude
 STOPWORDS = {
     "the", "a", "an", "and", "or", "of", "in", "to", "is", "for",
     "with", "on", "that", "this", "are", "we", "our", "by", "from",
@@ -44,7 +44,7 @@ def extract_abstract(xml_path: Path) -> str:
 
 
 def build_corpus(xml_dir: Path) -> str:
-    """Concatenate abstracts from all TEI XML files into a single string."""
+    """Concatenate abstracts from all TEI XML files into a string."""
     xml_files = sorted(xml_dir.glob("*.tei.xml"))
     if not xml_files:
         logger.error(f"No TEI XML files found in '{xml_dir}'. Run process_grobid.py first.")
@@ -79,7 +79,7 @@ def generate_cloud(corpus: str, output_path: Path) -> None:
     fig, ax = plt.subplots(figsize=(14, 7))
     ax.imshow(wc, interpolation="bilinear")
     ax.axis("off")
-    ax.set_title("Keyword Cloud — AI/ML Paper Abstracts", fontsize=16, pad=20)
+    ax.set_title("Keyword Cloud: AI/ML Paper Abstracts", fontsize=16, pad=20)
     plt.tight_layout()
     plt.savefig(output_path, dpi=150)
     plt.close()

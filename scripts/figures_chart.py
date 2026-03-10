@@ -19,7 +19,7 @@ def get_paper_title(tree: etree._ElementTree) -> str:
     """Extract the paper title from the TEI header, fallback to filename."""
     titles = tree.findall(".//tei:titleStmt/tei:title", TEI_NS)
     if titles and titles[0].text:
-        # Truncate long titles for chart readability
+        # Truncate long titles
         return titles[0].text.strip()[:50]
     return "Unknown"
 

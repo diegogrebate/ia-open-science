@@ -18,6 +18,5 @@ services:
     environment:
       - GROBID_URL=http://grobid:8070
     volumes:
-      # Mount output folder so results are accessible on your machine
       - ./output:/app/output
       - ./data:/app/data

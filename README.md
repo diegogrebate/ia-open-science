@@ -37,14 +37,14 @@ All papers are open-access. PDFs are not committed to this repository. Use `scri
 
 ## Requirements
 
-- [Docker](https://docs.docker.com/get-docker/) — required for both installation methods
-- [Poetry](https://python-poetry.org/) — for the local environment method only
+- [Docker](https://docs.docker.com/get-docker/), required for both installation methods
+- [Poetry](https://python-poetry.org/), for the local environment method only
 
 ## Installation
 
 There are two ways to run this project.
 
-### Option A — Docker Compose (recommended)
+### Option A — Docker Compose
 
 Runs the full pipeline in an isolated environment. No Python setup needed.
 
@@ -133,10 +133,10 @@ poetry run pytest tests/ -v
 ## Limitations
 
 - Grobid's figure detection counts `<figure>` tags in TEI XML, which may include tables (tagged as figures in some versions of Grobid)
-- Abstract extraction assumes standard TEI structure — some papers with non-standard formatting may yield incomplete abstracts
+- Abstract extraction assumes standard TEI structure, some papers with non-standard formatting may yield incomplete abstracts
 - URL extraction via regex may capture malformed URLs from broken line wraps in the PDF
 - The pipeline requires a running Grobid instance; if unavailable it retries 3 times then skips the file
-- Docker Compose requires the Grobid health check to pass before the pipeline starts — on slow machines this may take over 30 seconds
+- Docker Compose requires the Grobid health check to pass before the pipeline starts, on slow machines this may take over 30 seconds
 
 ## Project Structure
 

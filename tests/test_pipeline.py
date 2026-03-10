@@ -60,7 +60,7 @@ def test_figure_counts_are_non_negative():
     xml_files = list(XML_DIR.glob("*.tei.xml"))
 
     if not xml_files:
-        pytest.skip("No XML files found — run process_grobid.py first.")
+        pytest.skip("No XML files found. Run process_grobid.py first.")
 
     for xml_path in xml_files:
         tree = etree.parse(str(xml_path))
@@ -78,7 +78,7 @@ def test_abstract_extraction():
     xml_files = list(XML_DIR.glob("*.tei.xml"))
 
     if not xml_files:
-        pytest.skip("No XML files found — run process_grobid.py first.")
+        pytest.skip("No XML files found. Run process_grobid.py first.")
 
     for xml_path in xml_files:
         tree = etree.parse(str(xml_path))
@@ -96,7 +96,7 @@ def test_extracted_links_are_valid_urls():
     link_files = list(links_dir.glob("*_links.txt"))
 
     if not link_files:
-        pytest.skip("No link files found — run extract_links.py first.")
+        pytest.skip("No link files found. Run extract_links.py first.")
 
     for link_file in link_files:
         links = link_file.read_text(encoding="utf-8").splitlines()

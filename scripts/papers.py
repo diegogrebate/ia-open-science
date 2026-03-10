@@ -7,7 +7,7 @@ import requests
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
-# 10 foundational open-access AI/ML papers from ArXiv
+# Papers from ArXiv
 PAPERS = [
     {"id": "1706.03762", "title": "Attention Is All You Need"},
     {"id": "1810.04805", "title": "BERT"},

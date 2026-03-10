@@ -22,7 +22,7 @@ URL_PATTERN = re.compile(
 
 def extract_links_from_xml(xml_path: Path) -> list[str]:
     """
-    Extract URLs from a TEI XML file using two strategies:
+    Extract URLs from a TEI XML file with two strategies:
     1. @target attributes on <ref> elements (structured links Grobid finds)
     2. Regex scan of all text nodes (catches inline URLs in body text)
     """
@@ -43,7 +43,7 @@ def extract_links_from_xml(xml_path: Path) -> list[str]:
     # Strategy 2: regex over all text content
     full_text = " ".join(tree.getroot().itertext())
     for match in URL_PATTERN.findall(full_text):
-        # Clean trailing punctuation that may have been captured
+        # Clean trailing punctuation
         url = match.rstrip(".,;:)")
         found.add(url)
 
@@ -53,7 +53,7 @@ def extract_links_from_xml(xml_path: Path) -> list[str]:
 
 
 def save_per_paper(paper_id: str, links: list[str], output_dir: Path) -> None:
-    """Save per-paper link list as a plain text file."""
+    """Save per paper link list as a plain text file."""
     output_dir.mkdir(parents=True, exist_ok=True)
     out_path = output_dir / f"{paper_id}_links.txt"
     out_path.write_text("\n".join(links), encoding="utf-8")

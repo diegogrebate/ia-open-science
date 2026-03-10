@@ -17,7 +17,7 @@ GROBID_URL = os.environ.get("GROBID_URL", "http://localhost:8070") + "/api/proce
 
 
 def is_grobid_alive() -> bool:
-    """Check Grobid server online before processing."""
+    """Check Grobid health."""
     try:
         response = requests.get("http://localhost:8070/api/isalive", timeout=5)
         return response.status_code == 200
@@ -31,7 +31,7 @@ def process_pdf(pdf_path: Path, output_dir: Path) -> None:
 
     # No duplicates
     if xml_path.exists():
-        logger.info(f"Skipping {pdf_path.name} — XML already exists.")
+        logger.info(f"Skipping {pdf_path.name}. XML already exists.")
         return
 
     logger.info(f"Processing: {pdf_path.name}")

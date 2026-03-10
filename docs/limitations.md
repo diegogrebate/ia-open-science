@@ -10,4 +10,4 @@
 
 - **ArXiv access:** Downloading papers requires internet access. ArXiv may rate-limit repeated requests; a 1-second delay between downloads is included to mitigate this.
 
-- **Language:** The stopword list in `keyword_cloud.py` is English-only. Papers with multilingual content may produce unexpected terms in the cloud.
+- **Language:** The stopword list in `keyword_cloud.py` is English only. Papers with multilingual content may produce unexpected terms in the cloud.

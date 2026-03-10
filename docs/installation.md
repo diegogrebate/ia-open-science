@@ -4,12 +4,12 @@ There are two ways to run this project: Docker Compose (recommended, no Python s
 
 ## Requirements
 
-- [Docker](https://docs.docker.com/get-docker/) — required for both methods
-- [Poetry](https://python-poetry.org/) — only needed for the local environment method
+- [Docker](https://docs.docker.com/get-docker/), required for both methods
+- [Poetry](https://python-poetry.org/), only needed for the local environment method
 
 ---
 
-## Option A — Docker Compose (recommended)
+## Option A — Docker Compose
 
 Docker Compose runs both Grobid and the pipeline together automatically. Think of it as a self-contained lab: everything spins up, runs, and the results appear in your `output/` folder.
 
